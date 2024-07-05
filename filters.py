@@ -14,7 +14,7 @@ class PyramidFilters:
         self.angular_filters = self.make_angular_filters()
         self.subband_filters = self.make_subband_filters()
 
-
+    # creates the polar mesh grid
     def make_polar_grid(self):
         height, width = self.height, self.width
         long = 1 + ((max(height, width) - min(height, width)) / min(height, width))
@@ -46,6 +46,7 @@ class PyramidFilters:
         return t
     
     def make_bandpass_filters(self):
+        # squared such that the bands get smaller towards the center
         bounds = np.linspace(1, 0.1, self.n_bands+1)**2
         dropoffs = np.linspace(5, 20, self.n_bands+1)
 

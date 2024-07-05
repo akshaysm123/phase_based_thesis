@@ -21,7 +21,7 @@ class Video:
         video = np.stack(frames, axis=0) # (Time,Height,Width,Color)
         return video, fps
 
-
+# transform single image to YIQ
 def rgb2yiqImage(image):
     yiq_transform = np.array([[0.299,   0.587,      0.114],
                               [0.5959,  -0.2746,    -0.3213],
@@ -33,6 +33,7 @@ def rgb2yiqImage(image):
     image = image.reshape(imshape)
     return image
 
+# for videos, backward transform also possible
 def rgb2yiqVideo(video, backward=False, forceCPU=False):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     if forceCPU:
